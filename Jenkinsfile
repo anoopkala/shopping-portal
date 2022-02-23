@@ -3,32 +3,29 @@ pipeline{
     agent any
 
 // uncomment the following lines by removing /* and */ to enable
-/*    tools{
-       maven 'Maven 3.6.3' 
+    tools{
+       nodejs 'nodejs' 
     }
-*/    
+    
 
     stages{
-        stage('one'){
+        stage('compile-app'){
             steps{
-                echo 'this is the first job'
-                sh 'uptime'
-                sleep 4
-            }
+                echo 'this is the compile job'
+                sh 'npm install'
+                   }
         }
-        stage('two'){
+        stage('test-app'){
             steps{
-                echo 'this is the second job'
-                sh 'uptime'
-                sleep 9
-            }
+                echo 'this is the test job'
+                sh 'npm test'
+                }
         }
-        stage('three'){
+        stage('package-app'){
             steps{
-                echo 'this is the third job'
-                sh 'uptime'
-                sleep 7
-            }
+                echo 'this is the package job'
+                sh 'npm run package'
+                }
         }
     }
     
@@ -40,4 +37,3 @@ pipeline{
     }
     
 }
-
